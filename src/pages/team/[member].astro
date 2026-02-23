@@ -15,11 +15,15 @@ export async function getStaticPaths() {
     await delay(45000);
   }
 
-  const { results } = await fetch(
+  const response = await fetch(
     `https://cdn.builder.io/api/v3/content/team-members?apiKey=${builderAPIpublicKey}`,
   ).then((res) => res.json());
 
-  const dataTeamMembers: TeamMember[] = results[0].data.teamMembers;
+  if (!response.results) {
+    throw new Error(`Builder.io API error: ${JSON.stringify(response)}`);
+  }
+
+  const dataTeamMembers: TeamMember[] = response.results[0].data.teamMembers;
 
   const paths = dataTeamMembers.map((teamMember, index) => {
     return {

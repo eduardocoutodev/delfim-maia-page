@@ -18,13 +18,15 @@ if (isProduction) {
   await delay(45000);
 }
 
-const { results } = await fetch(
+const response = await fetch(
   `https://cdn.builder.io/api/v3/content/expertise-areas?apiKey=${builderAPIpublicKey}`,
-)
-  .then((res) => res.json())
-  .catch();
+).then((res) => res.json());
 
-const areas = results[0].data.expertiseAreas;
+if (!response.results) {
+  throw new Error(`Builder.io API error: ${JSON.stringify(response)}`);
+}
+
+const areas = response.results[0].data.expertiseAreas;
 ---
 
 <section id="expertise-areas">
