@@ -115,15 +115,15 @@
   }
 
   .card-small {
-    @apply w-full sm:w-1/2 xl:w-1/4;
+    @apply w-full sm:w-1/2 xl:w-1/4 grow;
   }
 
   .card-medium {
-    @apply w-full sm:w-1/2 xl:w-[30%];
+    @apply w-full sm:w-1/2 xl:w-[30%] grow;
   }
 
   .card-large {
-    @apply w-full sm:w-1/2 xl:w-[40%];
+    @apply w-full sm:w-1/2 xl:w-[40%] grow;
   }
 
   .landing-hero-container {
